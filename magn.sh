@@ -2,14 +2,14 @@
 
 FILE=$1
 
-if [ $# == 0 ]
+if [ $# = 0 ]
 then
 	echo "  "
 	echo " Skripta se pokrece sa :" 
 	echo " magn [FILE]"
 	echo " probaj -h"
 	exit 1
-elif [ "$1" == "-h" ] || [ "$1" == "--help" ]
+elif [ "$1" = "-h" ] || [ "$1" = "--help" ]
 then
 	echo "  "
 	echo " magn [FILE]"

@@ -2,14 +2,14 @@
 
 # David Buzgo 23.7.2019.
 
-if [ $# == 0 ] 
+if [ $# = 0 ] 
 then
 	echo " "
 	echo " rate [FILE]"
 	echo " probaj 	rate -h"
 	exit 1
 
-elif [ "$1" == "-h" ] ||  [ "$1" == "--help" ]
+elif [ "$1" = "-h" ] ||  [ "$1" = "--help" ]
 then
 	echo "  "
 	echo " rate [FILE]"
@@ -27,7 +27,7 @@ do
 	d=$((d+1))
 done
 
-echo "DATE UT; START; END; Teff; RA; Dec; F; Lm; $(awk -F ';' 'NR>1{printf("%s\n", $4);}' $MFN | sort | sed 's/\W//g' | uniq | tr '\n\r' '?' | sed 's/\?/; /g;  s/\W*$//g')" > /tmp/meteortmp-$d
+echo "DATE UT; START; END; Teff; RA; Dec; F; Lm; $(awk -F ';' 'NR>1{printf("%s\n", $4);}' "$MFN" | sort | sed 's/\W//g' | uniq | tr '\n\r' '?' | sed 's/\?/; /g;  s/\W*$//g')" > /tmp/meteortmp-$d
 
  awk -F ';' '
  NR>1 && FNR==NR{
@@ -50,6 +50,6 @@ echo "DATE UT; START; END; Teff; RA; Dec; F; Lm; $(awk -F ';' 'NR>1{printf("%s\n
  		printf("; C; %d",sum[raspored[i]]);
  	printf("\n");
  }
- ' /tmp/meteortmp-$d $MFN
+ ' /tmp/meteortmp-$d "$MFN"
 
  rm /tmp/meteortmp-$d
